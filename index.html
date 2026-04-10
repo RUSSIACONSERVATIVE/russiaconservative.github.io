@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Россия Консервативная — Презентация</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --black-secondary: #111111;
+            --gold: #C9A962;
+            --gold-light: #E5D4A1;
+            --white: #FFFFFF;
+            --gray: #1A1A1A;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(201, 169, 98, 0.5);
+        }
+
+        .nav-dot:hover {
+            background: var(--gold-light);
+        }
+
+        /* Sections */
+        section {
+            width: 100%;
+            min-height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 20px;
+        }
+
+        .content {
+            max-width: 1200px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .lead {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Gold Accent Line */
+        .gold-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            margin: 1.5rem 0;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: radial-gradient(circle at center, #1a1a1a 0%, var(--black) 70%);
+        }
+
+        .hero-logo {
+	    width: auto;
+    	    height: 180px;
+	    max-width: 100%;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 30px rgba(201, 169, 98, 0.3));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            margin-top: 2rem;
+            text-transform: uppercase;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--gray);
+            border: 1px solid rgba(201, 169, 98, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(201, 169, 98, 0.1);
+        }
+
+        .stat-number {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number span {
+            /* Убираем лишние стили, наследуем от родителя */
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .chart-path {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            transition: stroke-dashoffset 2s ease-out;
+        }
+        .visible .chart-path {
+            stroke-dashoffset: 0;
+        }
+
+    /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px 0;
+        }
+
+        /* Центральная направляющая линия */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+
+        /* Шахматный порядок */
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        /* Точки на линии */
+        .timeline-dot {
+            position: absolute;
+            top: 30px;
+            width: 12px;
+            height: 12px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--gold);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot { right: -6px; }
+        .timeline-item:nth-child(even) .timeline-dot { left: -6px; }
+
+        .timeline-date {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content {
+            background: var(--gray);
+            padding: 25px;
+            border: 1px solid rgba(201, 169, 98, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--gold);
+            background: rgba(201, 169, 98, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .timeline-content strong {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Адаптив для мобилок */
+        @media (max-width: 768px) {
+            .timeline-container::before { left: 20px; }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-dot { left: 14px !important; }
+        }
+
+        /* Ecosystem Grid */
+        .eco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .eco-card {
+            background: var(--gray);
+            padding: 40px;
+            border-left: 3px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .eco-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .eco-card:hover::before {
+            opacity: 1;
+        }
+
+        .eco-card.planned {
+            border-left-color: rgba(255, 255, 255, 0.3);
+            opacity: 0.8;
+        }
+
+        .eco-card.planned::after {
+            content: 'В разработке';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .eco-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .eco-location {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Directions Grid */
+        .directions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .directions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .direction-card {
+            background: var(--gray);
+            padding: 40px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .direction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .direction-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--black);
+        }
+
+        .direction-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .direction-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Professions Cloud */
+        .professions-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 3rem;
+            justify-content: center;
+        }
+        
+        .profession-tag {
+            padding: 12px 24px;
+            border: 1px solid;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .profession-tag.exists {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 169, 98, 0.1);
+        }
+
+        .profession-tag.needed {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            background: transparent;
+            border-style: dashed;
+        }
+
+        .profession-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 169, 98, 0.2);
+        }
+
+        .profession-tag.exists:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Scenarios */
+        .scenarios-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 968px) {
+            .scenarios-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scenario-card {
+            background: var(--gray);
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .scenario-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        }
+
+        .scenario-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(201, 169, 98, 0.2);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .scenario-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            color: var(--gold);
+        }
+
+        /* Allies Grid */
+        .allies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .ally-item {
+            aspect-ratio: 1;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ally-item:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.15);
+        }
+
+        .ally-name {
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            padding: 10px;
+        }
+
+        .ally-logo-placeholder {
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            border: 2px solid var(--gold);
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+
+        /* Manifesto */
+        .manifesto-list {
+            margin-top: 3rem;
+            display: grid;
+            gap: 20px;
+        }
+
+        .manifesto-item {
+            display: flex;
+            gap: 20px;
+            padding: 30px;
+            background: var(--gray);
+            border-left: 2px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .manifesto-item:hover {
+            transform: translateX(10px);
+            background: #222;
+        }
+
+        .manifesto-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            min-width: 40px;
+        }
+
+        .manifesto-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .manifesto-text strong {
+            color: var(--white);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Tasks */
+        .tasks-list {
+            margin-top: 3rem;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            padding-left: 10px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .task-check {
+            /* Убрали фиксированные размеры и скругление */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--gold);
+            font-weight: bold;
+            
+            /* Добавили отступ, чтобы символ не прилипал к тексту */
+            margin-right: 15px;
+            
+            /* Увеличили размер самого символа, так как рамки больше нет */
+            font-size: 1.4rem; 
+        }
+
+        .task-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .task-text strong {
+            color: var(--white);
+        }
+
+        /* Links Section */
+        .links-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .link-card {
+            flex: 1;
+            min-width: 280px;
+            background: var(--gray);
+            padding: 30px;
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '→';
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .link-card:hover::before {
+            opacity: 1;
+            right: 20px;
+        }
+
+        .link-card:hover {
+            border-color: var(--gold);
+            background: #1f1f1f;
+        }
+
+        .link-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .link-url {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .link-note {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        border-right: 2px solid var(--gold);
+        border-bottom: 2px solid var(--gold);
+        transform: translateX(-50%) rotate(45deg);
+        opacity: 0.6;
+        animation: arrow-float 2.5s ease-in-out infinite;
+        cursor: pointer;
+        z-index: 100;
+        pointer-events: auto;
+        /* Важно: отключаем наследование анимаций появления */
+        transition: none !important;
+    }
+
+    /* Плавающая анимация — мягкая, без резких скачков */
+    @keyframes arrow-float {
+        0%, 100% { 
+            transform: translateX(-50%) rotate(45deg) translateY(0); 
+            opacity: 0.6;
+        }
+        50% { 
+            transform: translateX(-50%) rotate(45deg) translateY(8px); 
+            opacity: 0.9;
+        }
+    }
+
+    /* Ховер-эффект */
+    .scroll-indicator:hover {
+        opacity: 1;
+        border-color: var(--gold-light);
+    }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-dots {
+                display: none;
+            }
+            
+            section {
+                padding: 60px 20px;
+                min-height: auto;
+                scroll-snap-align: none;
+            }
+            
+            html {
+                scroll-snap-type: none;
+            }
+        }
+
+        /* Background Elements */
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(201, 169, 98, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 169, 98, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" onclick="scrollToSection(0)"></div>
+        <div class="nav-dot" onclick="scrollToSection(1)"></div>
+        <div class="nav-dot" onclick="scrollToSection(2)"></div>
+        <div class="nav-dot" onclick="scrollToSection(3)"></div>
+        <div class="nav-dot" onclick="scrollToSection(4)"></div>
+        <div class="nav-dot" onclick="scrollToSection(5)"></div>
+        <div class="nav-dot" onclick="scrollToSection(6)"></div>
+        <div class="nav-dot" onclick="scrollToSection(7)"></div>
+        <div class="nav-dot" onclick="scrollToSection(8)"></div>
+        <div class="nav-dot" onclick="scrollToSection(9)"></div>
+        <div class="nav-dot" onclick="scrollToSection(10)"></div>
+        <div class="nav-dot" onclick="scrollToSection(11)"></div>
+    </div>
+
+    <!-- Section 1: Hero -->
+    <section id="hero">
+        <div class="bg-grid"></div>
+        <div class="content" style="text-align: center;">
+            <img src="Лого.png" alt="РК Логотип" class="hero-logo fade-in-up">
+            <h1 class="fade-in-up delay-2">РОССИЯ<br>КОНСЕРВАТИВНАЯ</h1>
+            <div class="subtitle fade-in-up delay-1">Основано в мае 2019</div>
+            <div class="gold-line" style="margin: 1.5rem auto; width: 100px;"></div>
+            <p class="lead fade-in-up delay-3" style="margin: 0 auto;">
+                Черносотенцы XXI века. Мы возрождаем русскую политическую субъектность на Урале, 
+		связывая верность Православию и монархическую идею с энергией нового поколения.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Section 2: Stats & Geography -->
+    <section id="stats">
+        <div class="glow"></div>
+        <div class="content">
+            <div class="subtitle fade-in-up">Присутствие</div>
+            <h2 class="fade-in-up delay-1">Единственное крупное<br>правое движение на Урале</h2>
+            <div class="gold-line fade-in-up delay-2"></div>
+            
+            <div class="stats-grid">
+                <div class="stat-card fade-in-up delay-1">
+                    <div class="stat-number" data-target="6">0</div>
+                    <div class="stat-label">Лет с момента основания</div>
+                </div>
+                <div class="stat-card fade-in-up delay-2">
+                    <div class="stat-number"><span data-target="10">0</span>K+</div>
+                    <div class="stat-label">Суммарная аудитория</div>
+                </div>
+                <div class="stat-card fade-in-up delay-3">
+                    <div class="stat-number"><span data-target="50">0</span>+</div>
+                    <div class="stat-label">Активных участников в разных городах</div>
+                </div>
+                <div class="stat-card fade-in-up delay-4">
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label">Города присутствия</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Section 6: Big Stats -->
+    <section id="metrics" style="background: var(--black-secondary);">
+        <div class="content" style="text-align: center;">
+            <div class="subtitle fade-in-up">В цифрах</div>
+            <h2 class="fade-in-up delay-1">Статистика ВКонтакте</h2>
+            
+            <div class="stats-grid" style="margin-top: 4rem;">
+                <div class="fade-in-up delay-1">
+                    <div style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 700; color: var(--gold); line-height: 1;">
+                        <span class="counter" data-target="90">0</span>K+
+                    </div>
+                    <div style="color: var(--text-secondary); margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Посещения</div>
+                </div>
+                
+                <div class="fade-in-up delay-2">
+                    <div style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 700; color: var(--gold); line-height: 1;">
+                        <span class="counter" data-target="8.34" data-decimals="1">0</span>M+
+                    </div>
+                    <div style="color: var(--text-secondary); margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Просмотры контента</div>
+                </div>
+                
+                <div class="fade-in-up delay-3">
+                    <div style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 700; color: var(--gold); line-height: 1;">
+                        <span class="counter" data-target="997">0</span>К+
+                    </div>
+                    <div style="color: var(--text-secondary); margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Охват контента</div>
+                </div>
+            </div>
+
+            <div class="fade-in-up delay-4" style="margin-top: 4rem; padding: 30px; background: rgba(201, 169, 98, 0.1); border: 1px solid rgba(201, 169, 98, 0.3); display: inline-block;">
+                <p style="color: var(--gold); margin-bottom: 0.5rem;">Активная аудитория</p>
+                <p style="font-size: 1.2rem;">10 000 подписчиков на разных площадках</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tg-metrics" style="background: var(--black-secondary);">
+        <div class="glow"></div>
+        <div class="content" style="text-align: center;">
+            <div class="subtitle fade-in-up">В цифрах</div>
+            <h2 class="fade-in-up delay-1">Статистика Telegram</h2>
+            
+            <div class="stats-grid" style="margin-top: 4rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div class="fade-in-up delay-1 stat-card">
+                    <div class="stat-number"><span class="counter" data-target="50.1" data-decimals="1">0</span></div>
+                    <div class="stat-label">Индекс цитирования</div>
+                    <p style="font-size: 0.8rem; color: rgba(201, 169, 98, 0.6); margin-top: 0.5rem;">421 канал цитирует нас</p>
+                </div>
+                
+                <div class="fade-in-up delay-2 stat-card">
+                    <div class="stat-number"><span class="counter" data-target="31.1" data-decimals="1">0</span>%</div>
+                    <div class="stat-label">Вовлеченность (ERR)</div>
+                    <p style="font-size: 0.8rem; color: rgba(201, 169, 98, 0.6); margin-top: 0.5rem;">Высокий уровень лояльности</p>
+                </div>
+            </div>
+
+            <div class="fade-in-up delay-3 stat-card" style="margin-top: 30px; max-width: 900px; margin-left: auto; margin-right: auto; padding: 40px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+                    <div style="text-align: left;">
+                        <div style="color: var(--gold); font-size: 2.5rem; font-weight: 700; line-height: 1;">1 163</div>
+                        <div style="color: var(--text-secondary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">Подписчиков</div>
+                    </div>
+                    <div style="text-align: right; color: rgba(201, 169, 98, 0.6); font-weight: 600;">
+                        ↑ +217 за месяц
+                    </div>
+                </div>
+                <div style="height: 250px; width: 100%;">
+                    <canvas id="subscriberChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="history">
+        <div class="content">
+            <div class="subtitle fade-in-up">Наш путь</div>
+            <h2 class="fade-in-up delay-1">История движения</h2>
+            
+            <div class="timeline-container">
+                <div class="timeline-item fade-in-up">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2019</div>
+                    <div class="timeline-content">
+                        <strong>Основание</strong>
+                            <p>Запуск проектов «Екатеринбург Консервативный» и «Челябинск Консервативный». Первые уличные акции и формирование кадрового костяка на Урале.</p>                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-up delay-1">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content">
+                        <strong>Выход в оффлайн</strong>
+                            <p>Создание проекта «Россия Консервативная». Начало регулярных тренировок. Участие в волонтерской программе «Мы вместе», успешное противодействие деструктивной повестке нетрадиционных движений.</p>                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-up delay-1">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <strong>Медиа-строительство</strong>
+                            <p>Выход в Telegram и запуск полноценной Редакции. Переформатирование работы «РК» и превращение паблика в информационный и медийный ресурс. </p>                </div>
+                </div>
+                
+                <div class="timeline-item fade-in-up delay-2">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <strong>Масштабирование</strong>
+                        <p>Достижение охвата в 7 млн просмотров. Переход Редакции на режим постоянного автономного функционирования.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-up delay-2">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <strong>Деятельность</strong>
+                        <p>Цикл лекций и дискуссий в городах Урала. Организация гуманитарных сборов для СВО, проведение полевых выездов и тренировок.</p>                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-up delay-2">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <strong>Политическая субъектность</strong>
+                        <p>Выход лидеров «РК» в политическое пространство. Превращение в деятелей регионального уровня.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-up delay-2">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-content">
+                        <strong>Перезапуск</strong>
+                        <p>Подготовка к перезапуску РК и формированию устойчивой экосистемы. Расширение сети отделений в городах Большого Урала.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Ecosystem -->
+    <section id="ecosystem">
+        <div class="content">
+            <div class="subtitle fade-in-up">Структура</div>
+            <h2 class="fade-in-up delay-1">Экосистема РК</h2>
+            <p class="lead fade-in-up delay-2">
+                Медиаплощадка как основа деятельности на всю Россию + физическое присутствие на Урале
+            </p>
+            
+            <div class="eco-grid">
+                <div class="eco-card fade-in-up delay-1">
+                    <div class="eco-location">Базовое отделение</div>
+                    <div class="eco-title">Челябинск</div>
+                    <p style="color: var(--text-secondary);">Координация всех направлений работы, мероприятия, акции, лекции</p>
+                </div>
+                
+                <div class="eco-card fade-in-up delay-2">
+                    <div class="eco-location">Активное отделение</div>
+                    <div class="eco-title">Екатеринбург</div>
+                    <p style="color: var(--text-secondary);">Точка роста, работа с молодежью, мероприятия, дебаты</p>
+                </div>
+                
+                <div class="eco-card fade-in-up delay-3">
+                    <div class="eco-location">Медиа</div>
+                    <div class="eco-title">Медиа-платформа</div>
+                    <p style="color: var(--text-secondary);">Информационный ресурс федерального уровня, формирование правой повестки</p>
+                </div>
+                
+                <div class="eco-card planned fade-in-up delay-4">
+                    <div class="eco-location">План 2026</div>
+                    <div class="eco-title">Тюмень</div>
+                    <p style="color: var(--text-secondary);">Открытие нового отделения, расширение сети</p>
+                </div>
+
+                <div class="eco-card planned fade-in-up delay-4">
+                    <div class="eco-location">План 2026</div>
+                    <div class="eco-title">Пермь</div>
+                    <p style="color: var(--text-secondary);">Открытие нового отделения, расширение сети</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Directions -->
+    <section id="directions">
+        <div class="bg-grid"></div>
+        <div class="content">
+            <div class="subtitle fade-in-up">Деятельность</div>
+            <h2 class="fade-in-up delay-1">Четыре направления работы</h2>
+            
+            <div class="directions-grid">
+                <div class="direction-card fade-in-up delay-1">
+                    <div class="direction-icon">I</div>
+                    <div class="direction-title">Просвещение</div>
+                    <div class="direction-desc">
+                        Обучение, перевоспитание и воспитание молодежи в монархических, 
+                        консервативных и черносотенных ценностях. Лекции, дискуссионные клубы, 
+                        образовательные интенсивы.
+                    </div>
+                </div>
+                
+                <div class="direction-card fade-in-up delay-2">
+                    <div class="direction-icon">II</div>
+                    <div class="direction-title">Спорт и ЗОЖ</div>
+                    <div class="direction-desc">
+                        Совместные тренировки, походы, выезды на природу. Телесное развитие 
+                        как основа духовного. Поощрение здорового образа жизни.
+                    </div>
+                </div>
+                
+                <div class="direction-card fade-in-up delay-3">
+                    <div class="direction-icon">III</div>
+                    <div class="direction-title">Социальная работа</div>
+                    <div class="direction-desc">
+                        Благотворительность и реальная помощь в городах. Перевоспитание трудной 
+                        молодежи через вовлечение в консервативное сообщество и наставничество.
+                    </div>
+                </div>
+                
+                <div class="direction-card fade-in-up delay-4">
+                    <div class="direction-icon">IV</div>
+                    <div class="direction-title">Медиа</div>
+                    <div class="direction-desc">
+                        Медийная деятельность как медиапространство и ресурс РК. 
+                        Создание контента, информационная политика, присутствие в цифровой среде.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Professions -->
+    <section id="professions">
+        <div class="content">
+            <div class="subtitle fade-in-up">Состав</div>
+            <h2 class="fade-in-up delay-1">Кто нам нужен?</h2>
+            <p class="lead fade-in-up delay-2">
+                Мы объединяем людей, готовых применять свои знания на благо Отечества.
+                <span style="color: var(--gold);">Золотым</span> выделены компетенции, которые уже активно работают в наших проектах, наполняя их смыслами. 
+                Серым — те направления, которые мы усиливаем прямо сейчас.
+            </p>
+            
+            <div class="professions-cloud fade-in-up delay-3">
+                <div class="profession-tag exists">Политики</div>
+                <div class="profession-tag exists">Историки</div>
+                <div class="profession-tag exists">Философы</div>
+                <div class="profession-tag exists">Военные</div>
+                <div class="profession-tag exists">Юристы</div>
+                <div class="profession-tag exists">Ветераны</div>
+                <div class="profession-tag exists">Общественные деятели</div>
+                <div class="profession-tag needed">Маркетологи</div>
+                <div class="profession-tag needed">Предприниматели</div>
+                <div class="profession-tag needed">Педагоги</div>
+                <div class="profession-tag needed">Журналисты</div>
+                <div class="profession-tag needed">Разработчики</div>
+                <div class="profession-tag needed">Дизайнеры</div>                
+                <div class="profession-tag needed">Контент-мейкеры</div>
+                <div class="profession-tag needed">Монтажеры</div>
+                <div class="profession-tag needed">Копирайтеры</div>
+                <div class="profession-tag needed">Медики</div>
+                <div class="profession-tag needed">Урбанисты</div>
+                <div class="profession-tag needed">Культурологи</div>
+                <div class="profession-tag needed">Аналитики</div>
+                <div class="profession-tag needed">Фольклористы</div>
+                <div class="profession-tag needed">SMM-щики</div>
+                <div class="profession-tag needed">Рилсмейкеры</div>
+                <div class="profession-tag needed">Спикеры</div>
+                <div class="profession-tag needed">Организаторы</div>
+            </div>
+
+            <p class="fade-in-up delay-4" style="text-align: center; margin-top: 3rem; color: var(--text-secondary);">
+                Нашёл себя? Присоединяйся к нам! Не нашёл — стань первым в своей нише. Твой опыт и воля нужны здесь и сейчас!
+            </p>
+        </div>
+    </section>
+
+    <section id="mission">
+        <div class="bg-grid"></div>
+        <div class="content">
+            <div class="subtitle fade-in-up">Фундамент</div>
+            <h2 class="fade-in-up delay-1">Наш манифест</h2>
+            <div class="gold-line fade-in-up delay-2"></div>
+            
+            <div class="scenarios-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="scenario-card fade-in-up delay-1">
+                    <div class="scenario-number">01</div>
+                    <div class="scenario-title">ПРЕЕМСТВЕННОСТЬ</div>
+                    <p style="color: var(--text-secondary);">Мы — «черносотенцы XXI века». Традиции защиты Русского Царства и Империи в современных реалиях.</p>
+                </div>
+                <div class="scenario-card fade-in-up delay-2">
+                    <div class="scenario-number">02</div>
+                    <div class="scenario-title">ИДЕОЛОГИЧЕСКОЕ ЯДРО</div>
+                    <p style="color: var(--text-secondary);">Царизм как живая объединяющая идея, а не догма. Наш девиз: «За Веру, Народ и Отечество!».</p>
+                </div>
+                <div class="scenario-card fade-in-up delay-3">
+                    <div class="scenario-number">03</div>
+                    <div class="scenario-title">НАРОДНОЕ САМОУПРАВЛЕНИЕ</div>
+                    <p style="color: var(--text-secondary);">Пока Корона «почивает», место монарха должен занять русский народ. Сильное самоуправление — путь к возрождению монархии.</p>
+                </div>
+                <div class="scenario-card fade-in-up delay-1">
+                    <div class="scenario-number">04</div>
+                    <div class="scenario-title">БЕСПАРТИЙНОЕ ГОСУДАРСТВО</div>
+                    <p style="color: var(--text-secondary);">Отказ от партийной бюрократии. Власть должна опираться на «Землю» — прямых представителей самоуправлений.</p>
+                </div>
+                <div class="scenario-card fade-in-up delay-2">
+                    <div class="scenario-number">05</div>
+                    <div class="scenario-title">РУССКИЙ ПОРЯДОК</div>
+                    <p style="color: var(--text-secondary);">Россия принадлежит всем коренным народам, но русский народ — хозяин и ответственный за порядок. Если русским хорошо — хорошо всем.</p>
+                </div>
+                <div class="scenario-card fade-in-up delay-3">
+                    <div class="scenario-number">06</div>
+                    <div class="scenario-title">СВОБОДА СОЗИДАНИЯ</div>
+                    <p style="color: var(--text-secondary);">Государство — регулятор, а не хозяин. Излишнее вмешательство ведет к вырождению. Народу нужно дать «дышать».</p>
+                </div>
+                <div class="scenario-card fade-in-up delay-1">
+                    <div class="scenario-number">07</div>
+                    <div class="scenario-title">ДУХОВНЫЙ ФУНДАМЕНТ</div>
+                    <p style="color: var(--text-secondary);">Независимость Церкви от государства. Её авторитет — в служении Богу и наставлении народа, а не прислуживании властям.</p>
+                </div>
+                <div class="scenario-card fade-in-up delay-2">
+                    <div class="scenario-number">08</div>
+                    <div class="scenario-title">ИЕРАРХИЯ И СПРАВЕДЛИВОСТЬ</div>
+                    <p style="color: var(--text-secondary);">Равенство — утопия. Общество строится на основе способностей и труда при равенстве стартовых условий.</p>
+                </div>
+                <a href="https://vk.com/@rus_con-manifest-russkogo-carizma" target="_blank" class="scenario-card fade-in-up delay-3" style="text-decoration: none; display: block; background: rgba(201, 169, 98, 0.05); border: 1px solid rgba(201, 169, 98, 0.2); transition: all 0.3s ease;">
+                    <div class="scenario-number" style="color: var(--gold) !important;">→</div>
+                    <div class="scenario-title" style="color: var(--gold) !important;">ЧИТАТЬ НАШ МАНИФЕСТ</div>
+                    
+                    <p style="color: var(--text-secondary) !important; margin-bottom: 0;">«Мы — голос земли русской, её вера, её сила, её предназначение. 
+                        Мы — «Россия Консервативная», и мы сделаем её великой, как никогда прежде».</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects" style="background: var(--black-secondary);">
+        <div class="content">
+            <div class="subtitle fade-in-up">Направления</div>
+            <h2 class="fade-in-up delay-1">Ключевые проекты</h2>
+            
+            <div class="eco-grid">
+                <div class="eco-card fade-in-up delay-1">
+                    <div class="eco-title">РК.Медиа</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Создание мощной базы образовательных мультимедийных и текстовых материалов: подкасты, лекции, видеокурсы, личное наставничество, работа с авторами и лидерами мнений.</p>
+                    <div class="profession-tag exists" style="text-align: center; width: 100%;">
+                        #просвещение #мнение #образование
+                    </div>
+                </div>
+
+                <div class="eco-card fade-in-up delay-2">
+                    <div class="eco-title">РК.Наследие</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Возвращение исконного облика наших городов, декоммунизация среды, восстановление исторической топонимики и русской архитектурной идентичности</p>
+                    <div class="profession-tag exists" style="text-align: center; width: 100%;">
+                        #культура #память #русскийстиль
+                    </div>
+                </div>
+
+                <div class="eco-card fade-in-up delay-3">
+                    <div class="eco-title">РК.Помощь</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Социальное волонтерство и работа с молодежью, склонной к радикализму, перевоспитание и формирование сильных политиков нового типа, способных действовать в правовом поле.</p>
+                    <div class="profession-tag exists" style="text-align: center; width: 100%;">
+                        #служение #наставничество #будущее
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="future">
+        <div class="bg-grid"></div>
+        <div class="content">
+            <div class="subtitle fade-in-up">Будущее</div>
+            <h2 class="fade-in-up delay-1">ЖЕКОЛДИНСКИЙ ПРОРЫВ 2026+</h2>
+            
+            <div class="tasks-list">
+                <div class="task-item fade-in-up delay-1">
+                    <div class="task-check">☧</div>
+                    <div class="task-text"><strong>КАДРОВОЕ УСИЛЕНИЕ:</strong> Создание кадрового ядра из 50 проверенных соратников в каждом ключевом городе Урала. 
+                        Мы переходим от количества к качеству управления на местах.</div>
+                </div>
+                <div class="task-item fade-in-up delay-2">
+                    <div class="task-check">☧</div>
+                    <div class="task-text"><strong>ЭКОНОМИЧЕСКАЯ САМОДОСТАТОЧНОСТЬ:</strong> Переход на модель стратегического партнерства с крупным бизнесом и меценатами. 
+                        Формирование независимой ресурсной базы для реализации долгосрочных проектов.</div>
+                </div>
+                <div class="task-item fade-in-up delay-3">
+                    <div class="task-check">☧</div>
+                    <div class="task-text"><strong>ВИЗУАЛЬНАЯ ИДЕНТИЧНОСТЬ:</strong> Запуск собственной линейки продукции и мерча, как способоа заявить 
+                        о своих ценностях и сформировать узнаваемый стиль консервативного сообщества.</div>
+                </div>
+		        <div class="task-item fade-in-up delay-4">
+                    <div class="task-check">☧</div>
+                    <div class="task-text"><strong>ИНСТИТУЦИОНАЛЬНЫЙ РОСТ:</strong> Регистрация НКО, что позволит нам перевести работу в правовое поле, 
+                        закрепить системный статус и расширить масштаб взаимодействия с государством и обществом.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="footer">
+        <div class="glow"></div>
+        <div class="content" style="text-align: center;">
+            <h2 class="fade-in-up delay-1">Стань частью истории</h2>
+            <p class="lead fade-in-up delay-2" style="margin: 0 auto 3rem auto;">
+                Мы всегда ищем талантливых, молодых, добрых русских людей, готовых работать на благо России.
+            </p>
+            
+            <div class="links-container" style="display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                
+                <a href="https://vk.com/rus_con" class="link-card" style="flex: 0 1 auto; min-width: 500px; display: flex; align-items: center; text-align: left; padding: 25px; transition: all 0.3s ease;">
+                    <img src="ВКонтакте QR.png" alt="VK QR" style="width: 200px; height: 200px; margin-right: 20px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg); opacity: 0.9;">
+                    <div>
+                        <div class="link-title" style="font-size: 1.5rem; margin-bottom: 5px;">Страница ВК</div>
+                        <div class="link-url" style="font-size: 1rem;">vk.com/rus_con</div>
+                    </div>
+                </a>
+
+                <a href="https://t.me/rus_con" class="link-card" style="flex: 0 1 auto; min-width: 500px; display: flex; align-items: center; text-align: left; padding: 25px; transition: all 0.3s ease;">
+                    <img src="Телеграм QR.png" alt="TG QR" style="width: 200px; height: 200px; margin-right: 20px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg); opacity: 0.9;">
+                    <div>
+                        <div class="link-title" style="font-size: 1.5rem; margin-bottom: 5px;">Канал Telegram</div>
+                        <div class="link-url" style="font-size: 1rem;">@rus_con</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="hero-badge fade-in-up delay-4" style="margin-top: 5rem;">Россия • Урал  • Жеколдин</div>
+            
+            <div style="margin-top: 3rem; color: rgba(255, 255, 255, 0.125); font-size: 0.8rem;">
+                © 2019-2026 Россия Консервативная. Все права защищены.
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Инициализация общих данных
+        const allSections = document.querySelectorAll('section');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        // 2. Добавляем стрелки (кроме последней секции)
+        allSections.forEach((section, index) => {
+            if (index < allSections.length - 1) {
+                const arrow = document.createElement('div');
+                arrow.className = 'scroll-indicator';
+                arrow.onclick = () => allSections[index + 1].scrollIntoView({ behavior: 'smooth' });
+                section.appendChild(arrow);
+            }
+        });
+
+        // 3. Глобальная навигация для точек
+        window.scrollToSection = (index) => {
+            if (allSections[index]) {
+                allSections[index].scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+
+        // 4. Функция анимации цифр (улучшенная)
+        const animateValue = (obj) => {
+            const target = parseFloat(obj.getAttribute('data-target'));
+            const decimals = parseInt(obj.getAttribute('data-decimals')) || 0;
+            const duration = 2000;
+            let startTime = null;
+
+            const step = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 4); // Плавное замедление
+                const current = ease * target;
+                
+                obj.textContent = current.toFixed(decimals);
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // 5. Единый Intersection Observer для всего
+        const mainObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const index = Array.from(allSections).indexOf(target);
+
+                    // Подсветка точек навигации
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    if (dots[index]) dots[index].classList.add('active');
+
+                    // Анимация появления контента
+                    target.querySelectorAll('.fade-in-up').forEach(el => el.classList.add('visible'));
+
+                    // Запуск счетчиков
+                    target.querySelectorAll('.counter, .stat-number').forEach(counter => {
+                        if (!counter.dataset.started) {
+                            const innerSpan = counter.querySelector('span[data-target]') || counter;
+                            animateValue(innerSpan);
+                            counter.dataset.started = "true";
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        allSections.forEach(section => mainObserver.observe(section));
+
+        // 6. Параллакс (эффект свечения)
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            document.querySelectorAll('.glow').forEach(glow => {
+                glow.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
+            });
+        });
+
+        // 7. График Chart.js
+        const initChart = () => {
+            const canvas = document.getElementById('subscriberChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 0, 250);
+            gradient.addColorStop(0, 'rgba(201, 169, 98, 0.4)');
+            gradient.addColorStop(1, 'rgba(201, 169, 98, 0)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Янв', 'Фев', '10 Мар', '20 Мар', '1 Апр', 'Сегодня'],
+                    datasets: [{
+                        data: [850, 910, 946, 960, 1080, 1163],
+                        borderColor: '#C9A962',
+                        borderWidth: 3,
+                        backgroundColor: gradient,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#C9A962'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { display: false },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255,255,255,0.5)', font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+        };
+        initChart();
+    });
+    </script>
+</body>
+</html>
