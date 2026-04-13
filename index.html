@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Россия Консервативная — общественно-политический проект, объединяющий традиционные ценности и современное развитие. Присоединяйтесь к движению за консервативную Россию.">
+    <meta name="keywords" content="Россия, консерватизм, традиционные ценности, политика, общество, патриотизм">
+    <meta name="author" content="Россия Консервативная">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://russiaconservative.github.io/">
+    <meta property="og:title" content="Россия Консервативная — Презентация">
+    <meta property="og:description" content="Общественно-политический проект, объединяющий традиционные ценности и современное развитие.">
+    <meta property="og:image" content="https://russiaconservative.github.io/logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://russiaconservative.github.io/">
+    <meta property="twitter:title" content="Россия Консервативная — Презентация">
+    <meta property="twitter:description" content="Общественно-политический проект, объединяющий традиционные ценности и современное развитие.">
+    <meta property="twitter:image" content="https://russiaconservative.github.io/logo.png">
+    
     <title>Россия Консервативная — Презентация</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -761,10 +779,10 @@
         border-color: var(--gold-light);
     }
 
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .nav-dots {
-                display: none;
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+        .nav-dots {
+            display: none;
             }
             
             section {
@@ -806,26 +824,26 @@
 <body>
 
     <!-- Navigation Dots -->
-    <div class="nav-dots">
-        <div class="nav-dot active" onclick="scrollToSection(0)"></div>
-        <div class="nav-dot" onclick="scrollToSection(1)"></div>
-        <div class="nav-dot" onclick="scrollToSection(2)"></div>
-        <div class="nav-dot" onclick="scrollToSection(3)"></div>
-        <div class="nav-dot" onclick="scrollToSection(4)"></div>
-        <div class="nav-dot" onclick="scrollToSection(5)"></div>
-        <div class="nav-dot" onclick="scrollToSection(6)"></div>
-        <div class="nav-dot" onclick="scrollToSection(7)"></div>
-        <div class="nav-dot" onclick="scrollToSection(8)"></div>
-        <div class="nav-dot" onclick="scrollToSection(9)"></div>
-        <div class="nav-dot" onclick="scrollToSection(10)"></div>
-        <div class="nav-dot" onclick="scrollToSection(11)"></div>
-    </div>
+    <nav class="nav-dots" role="navigation" aria-label="Навигация по секциям">
+        <button class="nav-dot active" onclick="scrollToSection(0)" aria-label="Перейти к секции 1"></button>
+        <button class="nav-dot" onclick="scrollToSection(1)" aria-label="Перейти к секции 2"></button>
+        <button class="nav-dot" onclick="scrollToSection(2)" aria-label="Перейти к секции 3"></button>
+        <button class="nav-dot" onclick="scrollToSection(3)" aria-label="Перейти к секции 4"></button>
+        <button class="nav-dot" onclick="scrollToSection(4)" aria-label="Перейти к секции 5"></button>
+        <button class="nav-dot" onclick="scrollToSection(5)" aria-label="Перейти к секции 6"></button>
+        <button class="nav-dot" onclick="scrollToSection(6)" aria-label="Перейти к секции 7"></button>
+        <button class="nav-dot" onclick="scrollToSection(7)" aria-label="Перейти к секции 8"></button>
+        <button class="nav-dot" onclick="scrollToSection(8)" aria-label="Перейти к секции 9"></button>
+        <button class="nav-dot" onclick="scrollToSection(9)" aria-label="Перейти к секции 10"></button>
+        <button class="nav-dot" onclick="scrollToSection(10)" aria-label="Перейти к секции 11"></button>
+        <button class="nav-dot" onclick="scrollToSection(11)" aria-label="Перейти к секции 12"></button>
+    </nav>
 
     <!-- Section 1: Hero -->
     <section id="hero">
         <div class="bg-grid"></div>
         <div class="content" style="text-align: center;">
-            <img src="logo.png" alt="РК Логотип" class="hero-logo fade-in-up">
+            <img src="logo.png" alt="РК Логотип" loading="lazy" width="300" height="180" class="hero-logo fade-in-up">
             <h1 class="fade-in-up delay-2">РОССИЯ<br>КОНСЕРВАТИВНАЯ</h1>
             <div class="subtitle fade-in-up delay-1">Основано в мае 2019</div>
             <div class="gold-line" style="margin: 1.5rem auto; width: 100px;"></div>
@@ -1192,7 +1210,7 @@
                     <div class="scenario-title">ИЕРАРХИЯ И СПРАВЕДЛИВОСТЬ</div>
                     <p style="color: var(--text-secondary);">Равенство — утопия. Общество строится на основе способностей и труда при равенстве стартовых условий.</p>
                 </div>
-                <a href="https://vk.com/@rus_con-manifest-russkogo-carizma" target="_blank" class="scenario-card fade-in-up delay-3" style="text-decoration: none; display: block; background: rgba(201, 169, 98, 0.05); border: 1px solid rgba(201, 169, 98, 0.2); transition: all 0.3s ease;">
+                <a href="https://vk.com/@rus_con-manifest-russkogo-carizma" target="_blank" rel="noopener noreferrer" class="scenario-card fade-in-up delay-3" style="text-decoration: none; display: block; background: rgba(201, 169, 98, 0.05); border: 1px solid rgba(201, 169, 98, 0.2); transition: all 0.3s ease;">
                     <div class="scenario-number" style="color: var(--gold) !important;">→</div>
                     <div class="scenario-title" style="color: var(--gold) !important;">ЧИТАТЬ НАШ МАНИФЕСТ</div>
                     
@@ -1278,16 +1296,16 @@
             
             <div class="links-container" style="display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 20px;">
                 
-                <a href="https://vk.com/rus_con" class="link-card" style="flex: 0 1 auto; min-width: 500px; display: flex; align-items: center; text-align: left; padding: 25px; transition: all 0.3s ease;">
-                    <img src="VKQR.png" alt="VK QR" style="width: 200px; height: 200px; margin-right: 20px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg); opacity: 0.9;">
+                <a href="https://vk.com/rus_con" target="_blank" rel="noopener noreferrer" class="link-card" style="flex: 0 1 auto; min-width: 500px; display: flex; align-items: center; text-align: left; padding: 25px; transition: all 0.3s ease;">
+                    <img src="VKQR.png" alt="VK QR" loading="lazy" width="200" height="200" style="width: 200px; height: 200px; margin-right: 20px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg); opacity: 0.9;">
                     <div>
                         <div class="link-title" style="font-size: 1.5rem; margin-bottom: 5px;">Страница ВК</div>
                         <div class="link-url" style="font-size: 1rem;">vk.com/rus_con</div>
                     </div>
                 </a>
 
-                <a href="https://t.me/rus_con" class="link-card" style="flex: 0 1 auto; min-width: 500px; display: flex; align-items: center; text-align: left; padding: 25px; transition: all 0.3s ease;">
-                    <img src="TGQR.png" alt="TG QR" style="width: 200px; height: 200px; margin-right: 20px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg); opacity: 0.9;">
+                <a href="https://t.me/rus_con" target="_blank" rel="noopener noreferrer" class="link-card" style="flex: 0 1 auto; min-width: 500px; display: flex; align-items: center; text-align: left; padding: 25px; transition: all 0.3s ease;">
+                    <img src="TGQR.png" alt="TG QR" loading="lazy" width="200" height="200" style="width: 200px; height: 200px; margin-right: 20px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg); opacity: 0.9;">
                     <div>
                         <div class="link-title" style="font-size: 1.5rem; margin-bottom: 5px;">Канал Telegram</div>
                         <div class="link-url" style="font-size: 1rem;">@rus_con</div>
@@ -1303,7 +1321,6 @@
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // 1. Инициализация общих данных
